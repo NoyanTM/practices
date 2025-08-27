@@ -1,2 +1,2 @@
 # python-practices
-high-level stuff and python related snippets
+Monorepository for miscellaneous practices, experiments, and raw stuff: high-level (python scripts), low-level (), etc.
