@@ -24,15 +24,15 @@ pip install -r requirements.txt
   - saved file in .pcap format in `/local_data`
   - analyzed protcols: most frequent protocols in captured data in summary table (protocol / percentage of traffic)
     - "wireshark" -> "statistics" -> "protocol hierarchy"
-  - ![image_1]("./images/1.png")
-  - ![image_2]("./images/2.png")
-  - ![image_3]("./images/3.png")
-  - ![image_4]("./images/4.png")
-  - ![image_5]("./images/5.png")
-  - ![image_6]("./images/6.png")
+  - ![image_1](./images/1.png)
+  - ![image_2](./images/2.png)
+  - ![image_3](./images/3.png)
+  - ![image_4](./images/4.png)
+  - ![image_5](./images/5.png)
+  - ![image_6](./images/6.png)
 4. Anomaly and attack detection
   - detecting possible anomalies in the traffic (e.g., repeated failed DNS requests, ARP spoofing attemps, unusual port scanning activity)
   - suspicious flows with malicious activity
   - provided practical graph representation in main.py to identify connections
-  - ![image_7]("./images/7.png")
+  - TODO: place html_figure here
 
