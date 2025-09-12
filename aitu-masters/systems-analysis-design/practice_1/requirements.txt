@@ -1,0 +1,6 @@
+pandas
+requests
+notebook
+networkx
+matplotlib
+fake-useragent
