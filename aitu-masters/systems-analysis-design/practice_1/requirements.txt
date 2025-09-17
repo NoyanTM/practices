@@ -9,3 +9,4 @@ scipy # remove, because numpy have numpy.random.normal
 pyvis # remove, because need graph database
 nltk
 numpy
+scikit-learn
