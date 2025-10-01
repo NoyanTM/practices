@@ -1,0 +1,48 @@
+@startuml
+start
+'N amount per year, so it is not required to be at every sprint
+'employees must attend N classes per year - minimum training frequency
+
+:**Define**:
+minimum_concepts: integer
+minimum_specifications: integer
+minimum_courses: Optional[integer];
+
+:**Assign**:
+minimum_concepts = 3
+minimum_specifications = 1;
+
+if (need supplementary knowledge related to sprint task or details) then (true)
+    repeat :Enter required amount of courses:
+    :**Input**:
+    minimum_courses
+    from team member;
+    backward :**Output**:
+    "Not more than 3 at the same time,
+    because you will be blocked from tasks";
+    repeat while (minimum_courses < 3 AND minimum_courses > 0) is (true) not (false)
+    :**Process**:
+    Getting certifications and taking courses in broad or specific topics.
+    For example, Hack The Box (HTB), Try Hack Me (THM), etc.;
+else (false)
+    :**Assign**:
+    minimum_courses = None;
+endif
+
+:**Process**:
+Trainings on security fundamentials and advanced concepts / content
+like "secure design", "threat modeling", "security testing", "development", "privacy", etc.;
+
+:**Process**:
+Researching security specifications and well-known materials
+like "OWASP Cheat Sheet Series", "ANSI/ISO", "NIST", etc.;
+
+'training criteria - if complete and verified everything so 100
+' some raiting system for personal only (not for comparison, becase it is pointless to compare between employees such metric)
+' some rewards and achivements system like progress and motivation to be more secure
+' and checking how this traning really affect on product that they develop
+' is it really becomes more secure so traning really affects or something not effective in trainings
+
+' also presentations and conferences between employees and attending some conference and making presentations;
+stop
+@enduml

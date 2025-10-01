@@ -1,0 +1,4 @@
+.env
+/keycloak-generated-admin-client
+/local_data
+openapi.yaml

@@ -1,0 +1,5 @@
+openapi-generator-cli
+build
+fastapi[standard]
+uvicorn[standard]
+pyjwt[crypto]
