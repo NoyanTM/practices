@@ -1,48 +1,77 @@
 @startuml
+!include flowchart_styles.puml
+
 start
-'N amount per year, so it is not required to be at every sprint
-'employees must attend N classes per year - minimum training frequency
+declare("minimum_concepts: integer\n\
+minimum_specifications: integer\n\
+minimum_courses: Optional[integer]\n\
+minimum_conferences: Optional[integer]\n\
+is_passed_recently: bool\n\
+training_criteria: integer")
 
-:**Define**:
-minimum_concepts: integer
-minimum_specifications: integer
-minimum_courses: Optional[integer];
+' TODO: training frequency instead
+input("is_passed_recently")
+note right 
+  From ERP system or other informational systems.
+  Employees / team members must attend N of trainings
+  amount per year / month / sprint cycles,
+  so it is not mandatory to take them everytime
+end note
 
-:**Assign**:
-minimum_concepts = 3
-minimum_specifications = 1;
-
-if (need supplementary knowledge related to sprint task or details) then (true)
-    repeat :Enter required amount of courses:
-    :**Input**:
-    minimum_courses
-    from team member;
-    backward :**Output**:
-    "Not more than 3 at the same time,
-    because you will be blocked from tasks";
-    repeat while (minimum_courses < 3 AND minimum_courses > 0) is (true) not (false)
-    :**Process**:
-    Getting certifications and taking courses in broad or specific topics.
-    For example, Hack The Box (HTB), Try Hack Me (THM), etc.;
+if(is_passed_recently) then (true)
+  output("Message that already passed\n\
+  training cycle, wait for next")
+  stop
 else (false)
-    :**Assign**:
-    minimum_courses = None;
+  assign("minimum_concepts = 3\n\
+  minimum_specifications = 1")
+
+  if (need supplementary knowledge related to sprint tasks or details) then (true)
+    repeat :Enter required amount of courses:
+    input("minimum_courses")
+    note right: from employee to email\nor informational system
+    backward output("Not more than 3 at the same time,\n\
+    because you will be blocked from tasks")
+    repeat while (minimum_courses < 3 AND minimum_courses > 0) is (true) not (false)
+    process("Getting certifications and taking courses\n\
+    in broad or specific topics")
+    note right: For example, Hack The Box (HTB), Try Hack Me (THM), etc.
+  else (false)
+    assign("minimum_courses = None")
+    ' minimum_courses = 0
+  endif
+
+  if (want to attend or present at technical / security conference) then (true)
+    assign("conference_data: dictionary := {}")
+    input("conference_data['title']\n\
+    conference_data['registration']\n\
+    conference_data['date']")
+    note right: from employee in paper format or digital
+    assign("minimum_conferences = 1")
+  else (false)
+    assign("minimum_conferences = None")
+  endif
+
+  process("Trainings on security fundamentials\n\
+  and advanced concepts / content")
+  note right
+    e.g., "secure design", "threat modeling",
+    "security testing", "development", "privacy", etc.;
+  end note
+
+  process("Researching security specifications\n\
+  and well-known materials")
+  note right: e.g., "OWASP Cheat Sheet Series", "ANSI/ISO", "NIST", etc.
+
+  ' TODO: if complete and verified everything so 100 training_criteria
+  ' TODO: raiting system for personal only metric
+  ' TODO: rewards and achivements system like progress and motivation to be more secure
+  defprocess("Data collection from employees\n\
+  via quantitative and qualitative methods\n\
+  to get actual indicators / metrics how\n\
+  training is really effective on their work and product")
+  note right: questionnaires, interview, и т.д.
+
+  stop
 endif
-
-:**Process**:
-Trainings on security fundamentials and advanced concepts / content
-like "secure design", "threat modeling", "security testing", "development", "privacy", etc.;
-
-:**Process**:
-Researching security specifications and well-known materials
-like "OWASP Cheat Sheet Series", "ANSI/ISO", "NIST", etc.;
-
-'training criteria - if complete and verified everything so 100
-' some raiting system for personal only (not for comparison, becase it is pointless to compare between employees such metric)
-' some rewards and achivements system like progress and motivation to be more secure
-' and checking how this traning really affect on product that they develop
-' is it really becomes more secure so traning really affects or something not effective in trainings
-
-' also presentations and conferences between employees and attending some conference and making presentations;
-stop
 @enduml

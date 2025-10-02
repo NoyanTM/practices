@@ -1,0 +1,37 @@
+' TODO: multiple dynamic arguments
+' TODO: split by lines automatically (maxmessage size maybe?)
+' TODO: generate activity procedures automatically from json specification (for assign, input, etc.) 
+
+<style>
+activityDiagram {
+  activity {
+    RoundCorner 0
+    Shape database
+  }
+  HorizontalAlignment center
+}
+</style>
+
+!procedure declare($text)
+  :**Declare**\n$text;
+!endprocedure
+
+!procedure assign($text)
+  :**Assign**\n$text;
+!endprocedure
+
+!procedure input($text)
+  :**Input**\n$text; <<save>>
+!endprocedure
+
+!procedure output($text)
+  :**Output**\n$text; <<save>>
+!endprocedure
+
+!procedure process($text)
+  :**Process**\n$text;
+!endprocedure
+
+!procedure defprocess($text)
+  :**Predefined process**\n$text; <<procedure>>
+!endprocedure
