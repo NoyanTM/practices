@@ -1,0 +1,43 @@
+@startuml
+
+!include styles.puml
+
+actor User
+participant System
+queue Queue
+participant Orchestrator
+participant Instancer
+participant Collector
+participant Parser
+participant Analyzer
+participant ExternalResourceRepositories
+
+' TODO: for now it is only happy path, complex conditionals and error handling for
+' specific cases (infrastructure error like database problem or out of memory error)
+'TODO: определить каким образом и как Сollector будет источники определять for externalresourcerepositories 
+'TODO: отредактировать чтобы все данные шли только через Orchestrator (нам нельзя делать direct communications, только inter-process communications)
+'TODO: Image how Orchestrator checks task execution
+'TODO: ведь делать запросы во внешнюю сеть из самого инстанса небезопасно
+User -> System : Request with specific\nsoftware distribution\n(metadata and data)
+System -> Queue : Create task and\nadd it to Queue
+Queue -> System : The task is up for execution
+System -> Orchestrator : Task metadata and data\nwith status "requested/started",\nspecified "bundle" to use
+Orchestrator -> Instancer : Specific identified requirements of environment
+Instancer -> Orchestrator : Created instance with specified\nparameters according to requiremenents
+Orchestrator -> Collector : Data about created instance\nand its configuration
+Collector -> ExternalResourceRepositories : Request for additional data\nabout software distribution
+ExternalResourceRepositories -> Collector : Response with data
+Collector -> Orchestrator: Ready for data gathering and prepared external data
+Orchestrator -> Instancer: Redirect all data into created instance
+Orchestrator -> Orchestrator: Check if everything is ready\nand right for task execution
+Orchestrator -> Instancer: Start task execution
+Orchestrator -> Collector: Call to start data gathering from instance
+Instancer -> Orchestrator: Task execution is done
+Orchestrator -> Collector: Stop data gathering\nand transfer it to Parser
+Collector -> Parser: Gathered data during task execution
+Parser -> Analyzer: Parsed and validated data\nin a form of unified IR (Intermediate Representation)
+Analyzer -> Orchestrator: Detailed information and analysis\n(scores, quality, dependencies, etc.)
+Orchestrator -> System: Detailed information and analysis\n(scores, quality, dependencies, etc.)
+System -> User: Response with report about\nspecific software distribution:\ndetailed information and analysis\n(scores, quality, dependencies, etc.)
+
+@enduml
