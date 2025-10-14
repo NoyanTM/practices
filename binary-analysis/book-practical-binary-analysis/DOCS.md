@@ -1,0 +1,58 @@
+`Сначала просто чтение и отмечаем некоторые места интересные потом вдумчивое с конспектированием и практикой`
+
+- ASM, PE and ELF binary formats
+- Linking and loading 
+- Static and dynamic analysis 
+- Memory layout
+- Disassembly techniques
+- Compiler conventions
+- flow tracking and symbolic execution
+- Programs and tools for binary analysis / binary instrumentations (each aspect required specialized tools for that - то есть инструменты для автоматизации и упрощения таких задач и техник очень важны, подходы и концепты и техники -> инструменты). То есть теория нативно перетекает в практику и обратно. For example, Capstone, Ghidra, Radare, IDA Pro, ollydbg, binary ninja.
+- Dynamic taint analysis to track data through program execution 
+- Symbolic execution for automated exploit generation 
+- Hacker groups (like APT)
+- For security needs to analyze malwares due obfuscations and other anti-analysis techniques. Also for benign software: harden binaries against attacks with original program semantics to be preserved
+- Turning game console to general purpose computer, pirating software and cracking it's protection 
+- X86 64-bit architecture https://en.m.wikipedia.org/wiki/64-bit_computing
+- hacking, computer science
+- malware analysis, reverse engineering
+- binary analysis topics: binary instrumentation, dynamic taint analysis, symbolic execution
+- analysis tools and libraries
+- buffer overflow, disassembly / decompilation, pentesting, advanced debugging
+- operating system internals (processes, virtual memory): linux, windows, etc.
+- unix shell, x86/x86-64 assembly and other platform
+- binary instrumentation, taint analysis, symbolic execution
+- virtual machine
+
+- computer programs, high-level languages (C, C++)
+- compile source code -> execute/run binary executables with machine code
+- how do you know that the compiled program has the same semantics as the high-level source?
+  - semantic gap between high-level languages and binary machine code (low-level)
+  - do not trust compiled program: compiler bugs, subtle implementation errors, binary-level backdoors, malicious parasites
+  - binary programs and libraries with proprietary source code (cannot patch or analyze at source level)
+- binary analysis - analyzing properties of binary computer programs (binaries), machine code, containing data in order to analyze or modify properties of binary programs
+- reverse engineering - document behavior of proprietary software or malware
+- passive binary analysis techniques:
+  - statis analysis - without running binary, only static parsing and don't need platform-specific runtime (ARM, x86, etc.)
+  - dynamic analysis - analyzes as binary executes with runtime state (variables, conditional branches, etc.), but only see executed code
+- binary instrumentation techniques - modify binary program without source code
+- binary analysis is difficult than source code level analysis:
+  - "many binary analysis tasks are fundamentally undecidable - impossible to build an analysis engine for these problems that always returns a correct result"
+  - no symbolic information - symbolic information or symbols (meaningful names and naming conventions for constructs: variables, functions, classes), binary are often stripped of symbols
+  - no type information - types and complex data structures, so harder to understand purpose and structure of data
+  - no high-level abstraction - no classes and functions as in well-structured program, huge blobs of code and data, restoring high-level structure is complex and error-prone
+  - mixed code and data - data fragments mixed in with executable code
+  - location-dependent code and data - binaries aren't designed to be modefied (even adding machine instruction can cause problems and shift code around, invalidating memory addresses, and reference somewhere else in code) - any kind of code and data modifications is hard and can break binary
+- building tools for such tasks is essentials in binary analysis
+- ISA (Instruction Set Architecture)
+- Intel x86 ISA (x86-64 and x86-32 bit version)
+  - long history of backward compatibility, leading to dense instruction set (mapping byte values to opcode)
+  - code versus data problem - disassemblers mistakenly interpreting data as code
+  - "instruction set is variable length and allows unaligned memory accesses for all valid word sizes. Thus, x86 allows unique complex binary constructs, such as (partially) overlapping and misaligned instructions"
+- ASM syntax: Intel, AT&T
+
+appendix A
+- ASM - standard representation of machine instructions
+- how code constructs from C/++ are represented in ASM
+- basic 64-bit user-mode x86 instructions, floting-point instructions, extended instruction set (SSE, MMX)
+- disassembler - tries translate binary with machine code back to accurate compiler-generated assembly 
