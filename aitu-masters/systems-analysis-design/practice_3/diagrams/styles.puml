@@ -1,9 +1,0 @@
-<style>
-usecase {
-  MinimumWidth 100
-  MaximumWidth 100
-  ' MinimumHeight 150
-  ' MaximumHeight 150
-}
-HorizontalAlignment center
-</style>

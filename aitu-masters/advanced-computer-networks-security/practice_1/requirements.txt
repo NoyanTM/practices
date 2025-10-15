@@ -1,4 +1,0 @@
-pyshark
-networkx
-matplotlib
-pyvis
