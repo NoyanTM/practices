@@ -10,6 +10,7 @@ Requirements installation:
 ```
 sudo apt update
 sudo apt install frr \
+                 curl \
                  mininet \
                  openvswitch-testcontroller
 ```
@@ -18,6 +19,7 @@ sudo apt install frr \
 - Removed "termcolor"
 - Then turn off and disable the openvswitch controller
 TODO: https://stackoverflow.com/questions/21687357/mininet-ovs-controller-can-t-be-loaded-and-run
+TODO: https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository
 ```
 $ sudo systemctl stop openvswitch-testcontroller
 $ sudo systemctl disable openvswitch-testcontroller
